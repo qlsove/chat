@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
     <title><?=$title?></title>
-    <?=HTML::link('/favicon.ico', array('rel'=>'ico', 'type'=>'image/x-icon'))?>
+    <?=Site::favicon('favicon.ico')?>
     <?php foreach($styles as $file) {echo HTML::style($file), "\n";}?>
     <?php foreach($scripts as $file) {echo HTML::script($file), "\n";}?>
   </head>
