@@ -38,10 +38,10 @@ class Controller_Messages extends Controller_Template_Page {
       if ($tempitem["to"] == Auth::instance()->get_user()->id)
         $data["messages"][] = array('id' => $tempitem["id"], 'class' => 'inmsg', 'body' => nl2br($tempitem["body"]), 'timestamp' => $tempitem["timestamp"]);
     }
-
     $data["active"] = 'dialogs';
     $data["user"]   = $id;
     $data["error"]  = "The list is empty";
+
     $this->template->title   = 'Dialog';
     $this->template->scripts = array('assets/js/scrollTo.min.js', 'assets/js/dialog.js');
     $this->template->content = View::factory('dialog', $data);
@@ -81,20 +81,20 @@ class Controller_Messages extends Controller_Template_Page {
     $user     = $this->request->post('user');
     $id       = $this->request->post('id');
     $tempdata = ORM::factory('Message')->updateDialog($me, $user, $id);
-      if (count($tempdata) > 0) {
-        $data["messages"]["status"] ="ok";
-        foreach ($tempdata as $tempitem) {
-          if ($tempitem["from"] == $me)
-            $data["messages"]["body"][] = array('id' => $tempitem["id"], 'class' => 'sentmsg', 'body' => $tempitem["body"], 'timestamp' => $tempitem["timestamp"]);
-          if ($tempitem["to"] == $me)
-            $data["messages"]["body"][] = array('id' => $tempitem["id"], 'class' => 'inmsg', 'body' => $tempitem["body"], 'timestamp' => $tempitem["timestamp"]);
-        }
-        die(json_encode($data["messages"]));
+    if (count($tempdata) > 0) {
+      $data["messages"]["status"] ="ok";
+      foreach ($tempdata as $tempitem) {
+        if ($tempitem["from"] == $me)
+          $data["messages"]["body"][] = array('id' => $tempitem["id"], 'class' => 'sentmsg', 'body' => $tempitem["body"], 'timestamp' => $tempitem["timestamp"]);
+        if ($tempitem["to"] == $me)
+          $data["messages"]["body"][] = array('id' => $tempitem["id"], 'class' => 'inmsg', 'body' => $tempitem["body"], 'timestamp' => $tempitem["timestamp"]);
       }
-      else {
-        $data["status"] ="Empty";
-        die(json_encode($data));
-      }
+      die(json_encode($data["messages"]));
+    }
+    else {
+      $data["status"] ="Empty";
+      die(json_encode($data));
+    }
   }
 
 
@@ -110,6 +110,11 @@ class Controller_Messages extends Controller_Template_Page {
     $id     = $this->request->post('id');
     $status = $this->request->post('status');
     ORM::factory('Message')->setDelOnce($id, $status);
+  }
+
+
+  public function msg_type() {
+
   }
 
 }

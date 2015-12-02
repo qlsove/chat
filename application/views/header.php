@@ -28,7 +28,7 @@
 </div>
 
 <script type="text/javascript">
-setTimeout(gettNew, 10000);
+setTimeout(gettNew, 100);
 
 function gettNew(){
   var id = <?=Auth::instance()->get_user()->id?>;
@@ -38,8 +38,10 @@ function gettNew(){
     data: {"id" : id},
     success: function (data){
       var data = jQuery.parseJSON(data);
-      if (data.num != 0)
-        $(".inbox").find('a').text().replace(/(\d+)/, data.num);
+      if (data.num != 0) {
+        var count = $(".inbox").find('a').text().replace(/(\d+)/, data.num);
+        $(".inbox").find('a').text(count);
+      }
       setTimeout(gettNew, 30000);
     }
   })

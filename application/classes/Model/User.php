@@ -8,4 +8,18 @@ class Model_User extends Model_Auth_User {
       ->as_array();
       return $query;
   }
+
+	public function checkToken($token) { 
+		$query = ORM::factory('User')
+		  ->where('token', '!=', $token)
+		  ->find();
+		  return $query;
+  }
+
+	public function checkUser($key, $data) { 
+		$query = ORM::factory('User')
+		  ->where($key, '=', $data)
+		  ->find();
+		  return $query;
+  }
 }

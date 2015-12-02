@@ -19,12 +19,12 @@ $(document).ready(function(){
         data: {"user" : user, "id" : id},
         success: function (data){
           var data = jQuery.parseJSON(data);
-            if (data.status != 'Empty') {
-              $.each(data["body"], function(index, data){
-                $("#chatAndMessage").append('<div class="messageInChat"  data-id="'+data.id+'"><div class="'+data.class+'"">'+nl2br(data.body)+'<br><div class="dialog_time">'+data.timestamp+'</div></div></div>');
-                $('#chatAndMessage').scrollTo('max');
-              });
-            }
+          if (data.status != 'Empty') {
+            $.each(data["body"], function(index, data){
+              $("#chatAndMessage").append('<div class="messageInChat"  data-id="'+data.id+'"><div class="'+data.class+'"">'+nl2br(data.body)+'<br><div class="dialog_time">'+data.timestamp+'</div></div></div>');
+              $('#chatAndMessage').scrollTo('max');
+            });
+          }
           setTimeout(updateDialog, 10000);
         }
       })
@@ -51,14 +51,14 @@ $(document).ready(function(){
         success: function(data){
           var allow = true;
           $('.table-mail').remove();
-            if (data.length > 0) {
-              $('.sendprogres').hide();
-              $(".dialog_body").val('');
-              $.each(data, function(index, data){
-                $("#chatAndMessage").append('<div class="messageInChat"  data-id="'+data.id+'"><div class="'+data.class+'"">'+nl2br(data.body)+'<br><div class="dialog_time">'+data.timestamp+'</div></div></div>');
-              });
-              $('#chatAndMessage').scrollTo('max');
-            }
+          if (data.length > 0) {
+            $('.sendprogres').hide();
+            $(".dialog_body").val('');
+            $.each(data, function(index, data){
+              $("#chatAndMessage").append('<div class="messageInChat"  data-id="'+data.id+'"><div class="'+data.class+'"">'+nl2br(data.body)+'<br><div class="dialog_time">'+data.timestamp+'</div></div></div>');
+            });
+            $('#chatAndMessage').scrollTo('max');
+          }
         }
       })
     }

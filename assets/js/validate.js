@@ -60,7 +60,7 @@ $(document).ready(function(){
             }
             else
               incorrect ($("#"+data.item), data.text);
-            });
+          });
         }
       })
     }
@@ -70,10 +70,8 @@ $(document).ready(function(){
   $('.loginbtn').click(function(e){
     $('.valid').hide();
     var username = $("#username").val().trim();
-    console.log(username);
     var password = $("#password").val().trim();
     var remember = $("#loginkeeping").prop('checked');
-    console.log(password);
     if (username == '' || password == '') {
       if (username == '' || username == '')
         incorrect ($("#username"), error);
@@ -91,12 +89,12 @@ $(document).ready(function(){
         success: function(data){
           $('.beforeload').hide();
           var data = jQuery.parseJSON(data);
-            if (data) {
-              if (data.status == "error")
-                incorrect ($("#"+data.item), data.text);
-              else
-                $(location).attr('href',data.url+'inbox');
-            }
+          if (data) {
+            if (data.status == "error")
+              incorrect ($("#"+data.item), data.text);
+            else
+              $(location).attr('href',data.url+'inbox');
+          }
         }
       }) 
     };
