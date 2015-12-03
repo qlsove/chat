@@ -3,6 +3,17 @@ class Controller_Authorization extends Controller_Template {
 
   public $template = 'layouts/default';
 
+  public function before() {
+    parent::before();
+    if ($this->auto_render) {
+      $this->template->title   = 'Auntefication';
+      $this->template->styles  = array('assets/css/login/style.css', 'assets/css/login/animate-custom.css');
+      $this->template->scripts = array('assets/js/jquery.js','assets/js/validate.js');
+      $this->template->header  = '';
+    }
+  }
+
+
   public function action_main() {
     if (Auth::instance()->logged_in()) {
       $this->redirect(URL::site(NULL, TRUE).'inbox');
@@ -14,11 +25,6 @@ class Controller_Authorization extends Controller_Template {
       if(Auth::instance()->login($login, $password, $remember_me))
         $this->redirect(URL::site(NULL, TRUE).'inbox');
     }
-
-    $this->template->title   = 'Auntefication';
-    $this->template->styles  = array('assets/css/login/style.css', 'assets/css/login/animate-custom.css');
-    $this->template->scripts = array('assets/js/jquery.js','assets/js/validate.js');
-    $this->template->header  = '';
     $this->template->content = View::factory('login');
   }
 
@@ -27,7 +33,7 @@ class Controller_Authorization extends Controller_Template {
     Request::initial()->is_ajax() || die;
     $login    = $this->request->post('username');
     $password = $this->request->post('password');
-    $remember = ($this->request->post('remember')=='true') ? TRUE : FALSE;
+    $remember = ($this->request->post('remember') == 'true') ? TRUE : FALSE;
     if (Auth::instance()->login($login, $password, $remember)) {
       $message['status'] = 'ok';
       $message['url']    = URL::site(NULL, TRUE); 
@@ -100,15 +106,10 @@ class Controller_Authorization extends Controller_Template {
 
 
   public function action_approved() {
-    $this->template->title   = 'Auntefication';
-    $this->template->content = '';
-    $this->template->styles  = array();
-    $this->template->scripts = array();
-    $this->template->header  = '';
     $token = $this->request->query('token');
     $user = ORM::factory('User')->checkToken($token); 
     if ($user->loaded()) {
-      $user->add('roles',ORM::factory('Role',array('name'=>'login')));
+      $user->add('roles',ORM::factory('Role', array('name'=>'login')));
       $user->update_user(array('token'=>null), array('token'));
       Auth::instance()->logout();
       Auth::instance()->force_login($user->get('username'));

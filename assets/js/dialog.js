@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  var state = $("#chatAndMessage").data('active');
+  $("."+state).css({'border' : '1px solid #ADD8E6', 'border-radius' : '5px', 'background-color' : '#ADD8E6'});
   $('#chatAndMessage').scrollTo('max');
   var allow = true;
   setTimeout(updateDialog, 5000);

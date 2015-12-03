@@ -1,4 +1,4 @@
-<div id="chatAndMessage">
+<div id="chatAndMessage" data-active="<?=$active?>">
     <?php if(isset($messages)):
     foreach ($messages as $message):?>
     <div class="messageInChat" data-id="<?=$message["id"]?>">
@@ -17,6 +17,7 @@
 <div class="dialog_footer" data-user="<?=$user?>">
     <div class="dialog_inner">
         <textarea  class="dialog_body" autofocus name="text"></textarea>
+        <?=$partner?>
         <input class="sendbtn" type="button" name="loginbtn" value="Send" />
     </div>
 </div>

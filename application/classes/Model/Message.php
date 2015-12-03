@@ -14,25 +14,12 @@ class Model_Message extends ORM {
     ),
   );
 
-
-  public function getInMsg($id) {
-    $query = DB::select()
-      ->from($this->_table_name)
-      ->where('to', '=', $id)
-      ->and_where('removeByReceiver', '!=',  TRUE)
-      ->as_object('Model_Message')
-      ->execute();
-      return $query;
-  }
-
-
-  public function getSentMsg($id) {
-    $query = DB::select()
-      ->from($this->_table_name)
-      ->where('from', '=',  $id)
-      ->and_where('removeBySender', '!=',  TRUE)
-      ->as_object('Model_Message')
-      ->execute();
+  public function getMsg($type, $not_removed, $id) {
+    $query = ORM::factory('Message')
+      ->where($type, '=', $id)
+      ->and_where($not_removed, '!=',  TRUE)
+      ->find_all()
+      ->as_array();
       return $query;
   }
 
@@ -58,9 +45,9 @@ class Model_Message extends ORM {
 
 
   public function addMessage($me, $user, $text) {
-    $query = DB::insert($this->_table_name, array('from', 'to', 'body'))
-      ->values(array($me, $user, $text))
-      ->execute();
+    $query = ORM::factory('Message')
+      ->values(array('from' => $me, 'to' => $user, 'body' => $text))
+      ->save();
   }
 
 
@@ -87,14 +74,13 @@ class Model_Message extends ORM {
 
 
   public function getNew($me) {
-    $query = DB::select()
-        ->from($this->_table_name)
-        ->where('to', '=',  $me)
-        ->and_where('status', '=',  'unread')
-        ->and_where('removeByReceiver', '!=',  TRUE)
-        ->execute()
-        ->as_array();
-        return $query;
+    $query = ORM::factory('Message')
+      ->where('to', '=',  $me)
+      ->and_where('status', '=',  'unread')
+      ->and_where('removeByReceiver', '!=',  TRUE)
+      ->find_all()
+      ->as_array();
+      return $query;
   }
 
 

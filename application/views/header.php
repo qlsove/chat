@@ -14,9 +14,9 @@
       <a href="<?=URL::site(NULL, TRUE)?>sent">Sent</a>
     </h2>
   </div>
-  <div class="users">
+  <div class="dialogs">
     <h2>
-      <a href="<?=URL::site(NULL, TRUE)?>users">Peoples</a>
+      <a href="<?=URL::site(NULL, TRUE)?>dialogs">Dialogs</a>
     </h2>
   </div>
   <div class="hello">

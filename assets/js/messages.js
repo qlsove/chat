@@ -1,6 +1,5 @@
 $(document).ready(function(){
   var state = $(".mail-box").data('active');
-  console.log(state);
   $("."+state).css({'border' : '1px solid #ADD8E6', 'border-radius' : '5px', 'background-color' : '#ADD8E6'});
 
   $('tr').click(function(e){
