@@ -78,8 +78,7 @@ class Model_Message extends ORM {
       ->where('to', '=',  $me)
       ->and_where('status', '=',  'unread')
       ->and_where('removeByReceiver', '!=',  TRUE)
-      ->find_all()
-      ->as_array();
+      ->find_all();
       return $query;
   }
 

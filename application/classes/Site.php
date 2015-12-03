@@ -10,17 +10,6 @@ class Site {
   }
 
 
-  public static function update_inbox($per) {
-    $count = 0;
-    if (Auth::instance()->logged_in()) {
-      $result = ORM::factory('Message')->getNew(Auth::instance()->get_user()->id);
-      if (count($result) > 0)
-        $count = count($result);
-    }
-    return $count;
-  }
-
-
   public static function set_routes($config) {
     $routes = Kohana::$config->load($config);
     $data = explode('.', $config);

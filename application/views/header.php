@@ -26,11 +26,10 @@
 setTimeout(gettNew, 100);
 
 function gettNew(){
-  var id = <?=Auth::instance()->get_user()->id?>;
   $.ajax({ 
     url: "/update_inbox",
     method: 'POST',
-    data: {"id" : id},
+    data: {},
     success: function (data){
       var data = jQuery.parseJSON(data);
       if (data.num != 0) {

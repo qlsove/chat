@@ -59,8 +59,9 @@ class Controller_Messages extends Controller_Template_Page {
 
   public function action_update_inbox() {
     Request::initial()->is_ajax() || die;
-    $id              = $this->request->post('id');
-    $newcount["num"] = Site::update_inbox($id);
+    $id     = Auth::instance()->get_user()->id;
+    $result = ORM::factory('Message')->getNew($id);
+    $newcount["num"] = ($result->count() > 0) ? count($result) : 0;
     die(json_encode($newcount));
   }
 
