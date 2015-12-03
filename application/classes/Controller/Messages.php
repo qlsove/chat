@@ -4,12 +4,11 @@ class Controller_Messages extends Controller_Template_Page {
   public function action_type() {
     $type        = $this->request->param('type');
     $id          = Auth::instance()->get_user()->id;
-    $kind        = $type == "sent" ? "from" : "to";
+    $state       = $type == "sent" ? "from" : "to";
     $not_removed = $type == "sent" ? "removeBySender" : "removeByReceiver";
     $sender      = $type == "sent" ? false : true;
-    $tempdata    = ORM::factory('Message')->getMsg($kind, $not_removed, $id);
+    $tempdata    = ORM::factory('Message')->getMsg($state, $not_removed, $id);
     $status      = array_fill(0, count($tempdata), $sender);
-
     $data["messages"] = array_map(array($this, 'msg_type'), $tempdata, $status);
     $data["active"]   = $type;
     $data["error"]    = "The list is empty";
@@ -110,21 +109,21 @@ class Controller_Messages extends Controller_Template_Page {
 
   public function msg_type($tempitem, $sender) {
     return array(
-      'id'        => $tempitem->id,
-      'user'      => $tempitem->{$sender ? "sender" : "receiver"}->email,
-      'body'      => $tempitem->body,
-      'timestamp' => $tempitem->timestamp,
-      'class'     => $tempitem->status
+      'id'      => $tempitem->id,
+      'user'    => $tempitem->{$sender ? "sender" : "receiver"}->email,
+      'body'    => $tempitem->body,
+      'created' => $tempitem->created,
+      'class'   => $tempitem->status
     );
   }
 
 
   public function msg_new($tempitem, $me, $convert) {
     return array(
-      'id'        => $tempitem["id"],
-      'class'     => ($tempitem["from"] == $me) ? "sentmsg" : "inmsg",
-      'body'      => (!$convert) ? $tempitem["body"] : nl2br($tempitem["body"]),
-      'timestamp' => $tempitem["timestamp"]
+      'id'      => $tempitem["id"],
+      'class'   => ($tempitem["from"] == $me) ? "sentmsg" : "inmsg",
+      'body'    => (!$convert) ? $tempitem["body"] : nl2br($tempitem["body"]),
+      'created' => $tempitem["created"]
     );
   }
 

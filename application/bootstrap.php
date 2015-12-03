@@ -1,5 +1,4 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
 require SYSPATH.'classes/Kohana/Core'.EXT;
 if (is_file(APPPATH.'classes/Kohana'.EXT))
 	require APPPATH.'classes/Kohana'.EXT;
@@ -23,7 +22,6 @@ Kohana::init(array(
 	'base_url'   => '/',
 	'index_file' => FALSE,
 ));
-
 
 Kohana::$log->attach(new Log_File(APPPATH.'logs'));
 Kohana::$config->attach(new Config_File);

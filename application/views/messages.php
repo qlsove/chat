@@ -6,7 +6,7 @@
       <tr class="<?=$message["class"]?>" data-id="<?=$message["id"]?>">
         <td class="contact"><div class="manage"></div><?=$message["user"]?></td>
         <td class="subject"><?=$message["body"]?></td>
-        <td class="date"><?=$message["timestamp"]?></td>
+        <td class="date"><?=$message["created"]?></td>
       </tr>
       <?php endforeach;
       else:?>

@@ -1,9 +1,4 @@
 <div class="mail-box-header">
-  <!-- <div class="dialogs">
-    <h2>
-      <a href="<?php // URL::site(NULL, TRUE)?>msg">Dialogs</a>
-    </h2>
-  </div> -->
   <div class="inbox">
     <h2>
       <a href="<?=URL::site(NULL, TRUE)?>inbox">Inbox (0)</a>

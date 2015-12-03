@@ -80,7 +80,7 @@ class Controller_Authorization extends Controller_Template {
     }
 
     $token = md5(time().$this->request->post('usernamesignup').$this->request->post('emailsignup'));
-    $data = array(
+    $data  = array(
       'username'         => $this->request->post('usernamesignup'),
       'email'            => $this->request->post('emailsignup'),
       'password'         => $this->request->post('passwordsignup'),
@@ -107,7 +107,7 @@ class Controller_Authorization extends Controller_Template {
 
   public function action_approved() {
     $token = $this->request->query('token');
-    $user = ORM::factory('User')->checkToken($token); 
+    $user  = ORM::factory('User')->checkToken($token); 
     if ($user->loaded()) {
       $user->add('roles',ORM::factory('Role', array('name'=>'login')));
       $user->update_user(array('token'=>null), array('token'));

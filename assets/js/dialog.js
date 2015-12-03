@@ -23,7 +23,7 @@ $(document).ready(function(){
           var data = jQuery.parseJSON(data);
           if (data.status != 'Empty') {
             $.each(data["body"], function(index, data){
-              $("#chatAndMessage").append('<div class="messageInChat"  data-id="'+data.id+'"><div class="'+data.class+'"">'+nl2br(data.body)+'<br><div class="dialog_time">'+data.timestamp+'</div></div></div>');
+              $("#chatAndMessage").append('<div class="messageInChat"  data-id="'+data.id+'"><div class="'+data.class+'"">'+nl2br(data.body)+'<br><div class="dialog_time">'+data.created+'</div></div></div>');
               $('#chatAndMessage').scrollTo('max');
             });
           }
@@ -57,7 +57,7 @@ $(document).ready(function(){
             $('.sendprogres').hide();
             $(".dialog_body").val('');
             $.each(data, function(index, data){
-              $("#chatAndMessage").append('<div class="messageInChat"  data-id="'+data.id+'"><div class="'+data.class+'"">'+nl2br(data.body)+'<br><div class="dialog_time">'+data.timestamp+'</div></div></div>');
+              $("#chatAndMessage").append('<div class="messageInChat"  data-id="'+data.id+'"><div class="'+data.class+'"">'+nl2br(data.body)+'<br><div class="dialog_time">'+data.created+'</div></div></div>');
             });
             $('#chatAndMessage').scrollTo('max');
           }

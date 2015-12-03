@@ -29,7 +29,7 @@ return array(
     'URI'      => '<type>',
     'defaults' => array('controller' => 'messages', 'action' => 'type',),
     'regexp'   => array('type' => 'inbox|sent'),
-),
+  ),
 
   'dialog' =>  array(
     'URI'      => '<dialog>/<id>',
