@@ -27,7 +27,7 @@ $(document).ready(function(){
   });
 
 
-  $('.signin-button').click(function(e){
+  $('.signin-button').on('click', function() {
     $('.valid').hide();
     var emailsignup            = $("#emailsignup").val().trim();
     var usernamesignup         = $("#usernamesignup").val().trim();
@@ -67,7 +67,7 @@ $(document).ready(function(){
   });
 
 
-  $('.loginbtn').click(function(e){
+  $('.loginbtn').on('click', function() {
     $('.valid').hide();
     var username = $("#username").val().trim();
     var password = $("#password").val().trim();

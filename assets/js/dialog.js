@@ -36,7 +36,7 @@ $(document).ready(function(){
   };
 
 
-  $('.sendbtn').click(function(e){
+  $('.sendbtn').on('click', function() {
     var allow = false;
     var user  = $(".dialog_footer").data('user');
     var text  = $(".dialog_body").val();
@@ -67,7 +67,7 @@ $(document).ready(function(){
   });
 
 
-  $('#chatAndMessage').delegate('.messageInChat', 'click', function(){
+  $('.messageInChat').on('click', function() {
     if ($(this).find('.delete').length == 0) {
       $(this).css('background-color', '#E6E6FA');
       $(this).prepend('<img  class="delete" src="/assets/images/delete.png">');
@@ -81,7 +81,7 @@ $(document).ready(function(){
   });
 
 
-  $('#chatAndMessage').delegate('img.delete', 'click', function(){
+  $('img.delete').on('click', function() {
     var id     = $(this).closest(".messageInChat").data('id');
     var user   = $(this).closest(".messageInChat").find('div').attr("class");
     var status = (user == "inmsg") ? "removeByReceiver" : "removeBySender";
