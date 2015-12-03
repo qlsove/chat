@@ -57,7 +57,7 @@ class Controller_Authorization extends Controller_Template {
 
   public function action_logout() {
     Auth::instance()->logout();
-      $this->redirect(URL::site(NULL, TRUE));
+    $this->redirect(URL::site(NULL, TRUE));
   }
 
 
