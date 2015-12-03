@@ -1,8 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function() {
   var state = $(".mail-box").data('active');
   $("."+state).css({'border' : '1px solid #ADD8E6', 'border-radius' : '5px', 'background-color' : '#ADD8E6'});
 
-  $('tr').on('click', function() {
+  $('tr').click(function(e) {
     if ($(this).find('.manage').children().length == 0) {
       if ($(this).attr("class") == "unread" && state=='inbox') {
         $(this).find(".manage").append('<img  class="deletemsg" src="/assets/images/delete.png"><img  class="checkRead"  src="/assets/images/mail.png">');
@@ -21,7 +21,7 @@ $(document).ready(function(){
   });
 
 
-  $('img.deletemsg').on('click', function() {
+  $('.read, .unread').delegate('img.deletemsg', 'click', function() {
     var id     = $(this).closest("tr").data('id');
     var state  = $(".mail-box").data('active');
     var status = (state == "inbox") ? "removeByReceiver" : "removeBySender";
@@ -39,7 +39,7 @@ $(document).ready(function(){
   });
 
 
-  $('img.checkRead').on('click', function() {
+  $('.unread').delegate('img.checkRead', 'click', function() {
     var id = $(this).closest(".unread").data('id');
     $(this).closest(".unread").attr('class', 'read');
     $(this).hide();

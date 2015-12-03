@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
   var state = $("#chatAndMessage").data('active');
   $("."+state).css({'border' : '1px solid #ADD8E6', 'border-radius' : '5px', 'background-color' : '#ADD8E6'});
   $('#chatAndMessage').scrollTo('max');
@@ -6,12 +6,12 @@ $(document).ready(function(){
   setTimeout(updateDialog, 5000);
 
 
-  function nl2br(str){
+  function nl2br(str) {
     return str.replace(/([^>])\n/g, '$1<br/>');
   }
 
 
-  function updateDialog(){
+  function updateDialog() {
     var id   = ($('#chatAndMessage').children('.messageInChat').length > 0) ? $('#chatAndMessage').children('.messageInChat').last().data('id') : id = 0;
     var user = $(".dialog_footer").data('user');
     if (allow == true) {
@@ -36,7 +36,7 @@ $(document).ready(function(){
   };
 
 
-  $('.sendbtn').on('click', function() {
+  $('.sendbtn').click(function(e) {
     var allow = false;
     var user  = $(".dialog_footer").data('user');
     var text  = $(".dialog_body").val();
@@ -67,7 +67,7 @@ $(document).ready(function(){
   });
 
 
-  $('.messageInChat').on('click', function() {
+  $('#chatAndMessage').delegate('.messageInChat', 'click', function() {
     if ($(this).find('.delete').length == 0) {
       $(this).css('background-color', '#E6E6FA');
       $(this).prepend('<img  class="delete" src="/assets/images/delete.png">');
@@ -81,7 +81,7 @@ $(document).ready(function(){
   });
 
 
-  $('img.delete').on('click', function() {
+  $('#chatAndMessage').delegate('img.delete', 'click', function() {
     var id     = $(this).closest(".messageInChat").data('id');
     var user   = $(this).closest(".messageInChat").find('div').attr("class");
     var status = (user == "inmsg") ? "removeByReceiver" : "removeBySender";

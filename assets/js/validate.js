@@ -1,17 +1,17 @@
-$(document).ready(function(){
+$(document).ready(function() {
   var pattern    = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
   var error      = 'This field can\'t be empty!';
   var mailerror  = 'Please, check your email!';
   var notmatch   = 'Your email/username or password are incorrect!';
   var matcherror = 'The passwords fields don\'t match, empty or passwordlength is less 8 characters!';
 
-  function correct (obj){
+  function correct (obj) {
     $(obj).css({'border' : '1px solid #569b44'});
     $(obj).closest("p").find('.valid').hide();
   }
 
 
-  function incorrect (obj, error){
+  function incorrect (obj, error) {
     $(obj).css({'border' : '1px solid #ff0000'});
     $(obj).closest("p").find('.valid').text(error+ '\n');
     $(obj).closest("p").find('.valid').css({'color' : '#ff0000'});
@@ -19,7 +19,7 @@ $(document).ready(function(){
   }
 
 
-  $('#usernamesignup, #passwordsignup, #passwordsignup_confirm, #emailsignup, #username, #password').blur(function(){
+  $('#usernamesignup, #passwordsignup, #passwordsignup_confirm, #emailsignup, #username, #password').blur(function() {
     if ($(this).val().trim() != '')
       correct (this);
     else
@@ -27,7 +27,7 @@ $(document).ready(function(){
   });
 
 
-  $('.signin-button').on('click', function() {
+  $('.signin-button').click(function(e) {
     $('.valid').hide();
     var emailsignup            = $("#emailsignup").val().trim();
     var usernamesignup         = $("#usernamesignup").val().trim();
@@ -67,7 +67,7 @@ $(document).ready(function(){
   });
 
 
-  $('.loginbtn').on('click', function() {
+  $('.loginbtn').click(function(e) {
     $('.valid').hide();
     var username = $("#username").val().trim();
     var password = $("#password").val().trim();
