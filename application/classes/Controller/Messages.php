@@ -11,7 +11,7 @@ class Controller_Messages extends Controller_Template_Page {
     $status      = array_fill(0, count($tempdata), $sender);
     $data["messages"] = array_map(array($this, 'msg_type'), $tempdata, $status);
     $data["active"]   = $type;
-    $data["error"]    = "The list is empty";
+    $data["error"]    = "The ".$type." list is empty";
 
     $this->template->title   = ucfirst($type);
     $this->template->scripts = array('assets/js/messages.js');

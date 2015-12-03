@@ -1,12 +1,12 @@
 <div id="chatAndMessage" data-active="<?=$active?>">
-  <?php if(isset($messages)):
-  foreach ($messages as $message):?>
-  <div class="messageInChat" data-id="<?=$message["id"]?>">
-    <div class="<?=$message["class"]?>"><?=$message["body"]?><br>
-    <div class="dialog_time"><?=$message["created"]?></div></div>
-  </div>
-  <?php endforeach;
-  else:?>
+  <?php if (!empty($messages)) :
+    foreach ($messages as $message) :?>
+    <div class="messageInChat" data-id="<?=$message["id"]?>">
+      <div class="<?=$message["class"]?>"><?=$message["body"]?><br>
+      <div class="dialog_time"><?=$message["created"]?></div></div>
+    </div>
+    <?php endforeach;
+  else :?>
   <table class="table table-hover table-mail">
     <tbody>
       <td class="empty-list"><?=$error?></td>

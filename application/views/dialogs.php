@@ -1,15 +1,15 @@
 <div class="mail-box" data-active="<?=$active?>">
   <table class="table table-hover table-mail">
     <tbody>
-      <?php if(isset($users)):
-      foreach ($users as $user ):?>
+      <?php if (!empty($users)) :
+      foreach ($users as $user ) :?>
       <tr class="read">
         <td class="contact"><?=$user->username?></td>
         <td class="subject"><?=$user->email?></td>
         <td class="date"><a href="<?=URL::site(NULL, TRUE)?>dialog/<?=$user->id?>" >Write Message</a></td>
       </tr>
       <?php endforeach;
-      else:?>
+      else :?>
       <tr>
         <td class="empty-list"><?=$error?></td>
       </tr>
