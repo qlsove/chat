@@ -15,17 +15,21 @@ class Site {
     $data = explode('.', $config);
     if (count($data) == 1) {
       foreach ($routes as $name => $rout) {
-        if (isset($rout["regexp"]))
+        if (isset($rout["regexp"])) {
           Route::set($name, $rout["URI"], $rout["regexp"])->defaults($rout["defaults"]);
-        else
+        }
+        else {
           Route::set($name, $rout["URI"])->defaults($rout["defaults"]);
+        }
       }
     }
     if (count($data) == 2) {
-      if (isset($rout["regexp"]))
+      if (isset($rout["regexp"])) {
         Route::set($data[1], $routes["URI"], $routes["regexp"])->defaults($routes["defaults"]);
-      else
+      }
+      else {
         Route::set($data[1], $routes["URI"])->defaults($routes["defaults"]);
+      }
     }
   }
 

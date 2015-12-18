@@ -20,10 +20,12 @@ $(document).ready(function() {
 
 
   $('#usernamesignup, #passwordsignup, #passwordsignup_confirm, #emailsignup, #username, #password').blur(function() {
-    if ($(this).val().trim() != '')
+    if ($(this).val().trim() != '') {
       correct (this);
-    else
+    }
+    else {
       incorrect (this, error);
+    }
   });
 
 
@@ -33,13 +35,15 @@ $(document).ready(function() {
     var usernamesignup         = $("#usernamesignup").val().trim();
     var passwordsignup         = $("#passwordsignup").val().trim();
     var passwordsignup_confirm = $("#passwordsignup_confirm").val().trim();
-    if (pattern.test(emailsignup) == false)
+    if (pattern.test(emailsignup) == false) {
       incorrect ($("#emailsignup"), mailerror);
+    }
     if ((passwordsignup != passwordsignup_confirm) || (passwordsignup == '') || (passwordsignup_confirm == '') || (passwordsignup.length < 8)) {
       incorrect ($("#passwordsignup_confirm"), matcherror);
       $("#passwordsignup").css({'border' : '1px solid #ff0000'});
-      if (usernamesignup == '')
+      if (usernamesignup == '') {
         incorrect ($("#usernamesignup"), error);
+      }
     }
     else {
       $("#register").append('<img  class="beforeload"  src="/assets/images/loading.gif">');
@@ -48,7 +52,12 @@ $(document).ready(function() {
       $.ajax({ 
         url: "registration",
         method: 'POST',
-        data: {"emailsignup" : emailsignup, "usernamesignup" : usernamesignup, "passwordsignup" : passwordsignup, "passwordsignup_confirm" : passwordsignup_confirm},
+        data: {
+          "emailsignup" : emailsignup, 
+          "usernamesignup" : usernamesignup, 
+          "passwordsignup" : passwordsignup, 
+          "passwordsignup_confirm" : passwordsignup_confirm
+        },
         success: function(data){
           $('.beforeload').hide();
           var data = jQuery.parseJSON(data);
@@ -58,8 +67,9 @@ $(document).ready(function() {
               $("#"+data.item).closest("p").find('.valid').text(data.text+ '\n');
               $("#"+data.item).closest("p").find('.valid').show();
             }
-            else
+            else {
               incorrect ($("#"+data.item), data.text);
+            }
           });
         }
       })
@@ -73,10 +83,12 @@ $(document).ready(function() {
     var password = $("#password").val().trim();
     var remember = $("#loginkeeping").prop('checked');
     if (username == '' || password == '') {
-      if (username == '' || username == '')
+      if (username == '' || username == '') {
         incorrect ($("#username"), error);
-      if (password == '')
+      }
+      if (password == '') {
         incorrect ($("#password"), error);
+      }
     }
     else {
       $("#login").append('<img  class="beforeload"  src="/assets/images/loading.gif">');
@@ -85,15 +97,21 @@ $(document).ready(function() {
       $.ajax({ 
         url: "/login",
         method: 'POST',
-        data: {"username" : username, "password" : password, "remember" : remember},
+        data: {
+          "username" : username, 
+          "password" : password, 
+          "remember" : remember
+        },
         success: function(data){
           $('.beforeload').hide();
           var data = jQuery.parseJSON(data);
           if (data) {
-            if (data.status == "error")
+            if (data.status == "error") {
               incorrect ($("#"+data.item), data.text);
-            else
+            }
+            else {
               $(location).attr('href',data.url+'inbox');
+            }
           }
         }
       }) 
@@ -101,19 +119,3 @@ $(document).ready(function() {
   });
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

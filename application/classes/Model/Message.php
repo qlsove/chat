@@ -20,7 +20,7 @@ class Model_Message extends ORM {
       ->and_where($not_removed, '!=',  TRUE)
       ->find_all()
       ->as_array();
-      return $query;
+    return $query;
   }
 
 
@@ -40,7 +40,7 @@ class Model_Message extends ORM {
       ->order_by('id', 'ASC')
       ->execute()
       ->as_array();
-      return $query;
+    return $query;
   }
 
 
@@ -69,7 +69,7 @@ class Model_Message extends ORM {
       ->order_by('id', 'ASC')
       ->execute()
       ->as_array();
-      return $query;
+    return $query;
   }
 
 
@@ -79,7 +79,7 @@ class Model_Message extends ORM {
       ->and_where('status', '=',  'unread')
       ->and_where('removeByReceiver', '!=',  TRUE)
       ->find_all();
-      return $query;
+    return $query;
   }
 
 

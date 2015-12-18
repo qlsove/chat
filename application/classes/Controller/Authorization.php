@@ -18,12 +18,13 @@ class Controller_Authorization extends Controller_Template {
     if (Auth::instance()->logged_in()) {
       $this->redirect(URL::site(NULL, TRUE).'inbox');
     }
-    if (null !==$this->request->post('loginbtn')) {
-      $login       = $this->request->post('username');
-      $password    = $this->request->post('password');
-      $remember_me = (null !==$this->request->post('loginkeeping')) ? TRUE : FALSE;
-      if(Auth::instance()->login($login, $password, $remember_me))
+    if ($this->request->post('loginbtn') !== null) {
+      $login    = $this->request->post('username');
+      $password = $this->request->post('password');
+      $remember = $this->request->post('loginkeeping') !== null;
+      if(Auth::instance()->login($login, $password, $remember_me)) {
         $this->redirect(URL::site(NULL, TRUE).'inbox');
+      }
     }
     $this->template->content = View::factory('login');
   }
@@ -33,7 +34,8 @@ class Controller_Authorization extends Controller_Template {
     Request::initial()->is_ajax() || die;
     $login    = $this->request->post('username');
     $password = $this->request->post('password');
-    $remember = ($this->request->post('remember') == 'true') ? TRUE : FALSE;
+    $remember = $this->request->post('remember') == 'true';
+    var_dump($remember);die;
     if (Auth::instance()->login($login, $password, $remember)) {
       $message['status'] = 'ok';
       $message['url']    = URL::site(NULL, TRUE); 
@@ -109,14 +111,15 @@ class Controller_Authorization extends Controller_Template {
     $token = $this->request->query('token');
     $user  = ORM::factory('User')->checkToken($token); 
     if ($user->loaded()) {
-      $user->add('roles',ORM::factory('Role', array('name'=>'login')));
-      $user->update_user(array('token'=>null), array('token'));
+      $user->add('roles', ORM::factory('Role', array('name' => 'login')));
+      $user->update_user(array('token' => null), array('token'));
       Auth::instance()->logout();
       Auth::instance()->force_login($user->get('username'));
       $this->redirect(URL::site(NULL, TRUE).'inbox');
     }
-    else
+    else {
       $this->redirect(URL::site(NULL, TRUE));
+    }
   }
 
 }

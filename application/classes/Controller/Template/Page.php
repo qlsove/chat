@@ -12,8 +12,9 @@ class Controller_Template_Page extends Controller_Template {
       $this->template->header  = View::factory('header');
       $this->template->content = '';
     }
-    if (!Auth::instance()->logged_in())
+    if (!Auth::instance()->logged_in()) {
       $this->redirect(URL::site(NULL, TRUE).'in');
+    }
   }
 
 

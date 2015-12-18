@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var state = $("#chatAndMessage").data('active');
-  $("."+state).css({'border' : '1px solid #ADD8E6', 'border-radius' : '5px', 'background-color' : '#ADD8E6'});
+  $("."+state).css({'border' : '1px solid #ADD8E6', /*'border-radius' : '5px',*/ 'background-color' : '#ADD8E6'});
   $('#chatAndMessage').scrollTo('max');
   var allow = true;
   setTimeout(updateDialog, 5000);
@@ -12,13 +12,17 @@ $(document).ready(function() {
 
 
   function updateDialog() {
-    var id   = ($('#chatAndMessage').children('.messageInChat').length > 0) ? $('#chatAndMessage').children('.messageInChat').last().data('id') : id = 0;
+    var id   = ($('#chatAndMessage').children('.messageInChat').length > 0) ? $('#chatAndMessage').children('.messageInChat').last().data('id') : 0;
     var user = $(".dialog_footer").data('user');
     if (allow == true) {
+
       $.ajax({
         url: "/update_dialog",
         method: 'POST',
-        data: {"user" : user, "id" : id},
+        data: {
+          "user" : user, 
+          "id" : id
+        },
         success: function (data){
           var data = jQuery.parseJSON(data);
           if (data.status != 'Empty') {
@@ -40,7 +44,7 @@ $(document).ready(function() {
     var allow = false;
     var user  = $(".dialog_footer").data('user');
     var text  = $(".dialog_body").val();
-    var id    = ($('#chatAndMessage').children('.messageInChat').length > 0) ? $('#chatAndMessage').children('.messageInChat').last().data('id') : id = 0;
+    var id    = ($('#chatAndMessage').children('.messageInChat').length > 0) ? $('#chatAndMessage').children('.messageInChat').last().data('id') : 0;
     if (text.trim() != '') {
       $(".dialog_inner").append('<img  class="sendprogres"  src="/assets/images/loading.gif">');
       $('.sendprogres').show();
@@ -48,7 +52,11 @@ $(document).ready(function() {
       $.ajax({
         url: "/add",
         method: 'POST',
-        data: {"text" : text, "user" : user, "id" : id},
+        data: {
+          "text" : text, 
+          "user" : user, 
+          "id" : id
+        },
         dataType: 'json',
         success: function(data){
           var allow = true;
@@ -90,26 +98,16 @@ $(document).ready(function() {
     $.ajax({ 
       url: "/set_delete",
       method: 'POST',
-      data: {"id" : id, "status" : status},
+      data: {
+        "id" : id, 
+        "status" : status
+      },
       success: function(){
-        if ($('#chatAndMessage').children('.messageInChat').length == 0 &&  $('.table-mail').length == 0)
+        if ($('#chatAndMessage').children('.messageInChat').length == 0 &&  $('.table-mail').length == 0) {
           $('#chatAndMessage').append('<table class="table table-hover table-mail"><tbody><td class="empty-list"><?=$error?></td></tbody></table>');
+        }
       }
     });
   });
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-

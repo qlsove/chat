@@ -6,7 +6,7 @@ class Controller_Messages extends Controller_Template_Page {
     $id          = Auth::instance()->get_user()->id;
     $state       = $type == "sent" ? "from" : "to";
     $not_removed = $type == "sent" ? "removeBySender" : "removeByReceiver";
-    $sender      = $type == "sent" ? false : true;
+    $sender      = $type == "inbox";
     $tempdata    = ORM::factory('Message')->getMsg($state, $not_removed, $id);
     $status      = array_fill(0, count($tempdata), $sender);
     $data["messages"] = array_map(array($this, 'msg_type'), $tempdata, $status);

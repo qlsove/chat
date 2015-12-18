@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var state = $(".mail-box").data('active');
-  $("."+state).css({'border' : '1px solid #ADD8E6', 'border-radius' : '5px', 'background-color' : '#ADD8E6'});
+  $("."+state).css({'border' : '1px solid #ADD8E6', /*'border-radius' : '5px',*/ 'background-color' : '#ADD8E6'});
 
   $('tr').click(function(e) {
     if ($(this).find('.manage').children().length == 0) {
@@ -30,10 +30,14 @@ $(document).ready(function() {
     $.ajax({
       url: "/set_delete",
       method: 'POST',
-      data: {"id" : id, "status" : status},
+      data: {
+        "id" : id, 
+        "status" : status
+      },
       success: function() {
-        if ($('tbody').children('tr').length == 0)
+        if ($('tbody').children('tr').length == 0) {
           $('tbody').append('<tr><td class="empty-list"><?=$error?></td></tbody></table></tr>');
+        }
       }
     });
   });
@@ -47,7 +51,9 @@ $(document).ready(function() {
     $.ajax({ 
       url: "/set_read_once",
       method: 'POST',
-      data: {"id" : id}
+      data: {
+        "id" : id
+      }
     })
   })
 
