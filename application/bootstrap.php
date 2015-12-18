@@ -30,13 +30,7 @@ Kohana::modules(array(
 	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
 	'email'      => MODPATH.'email',			 // E-mail
 	'database'   => MODPATH.'database',   // Database access
-	// 'cache'      => MODPATH.'cache',      // Caching with multiple backends
-	// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
-	// 'image'      => MODPATH.'image',      // Image manipulation
-	// 'minion'     => MODPATH.'minion',     // CLI Tasks
-	// 'unittest'   => MODPATH.'unittest',   // Unit testing
-	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
-	));
+));
 
 Cookie::$salt = 'cghjklnkbvfcfhg34edfdty3edtfchd56';
 Site::set_routes('routes');
