@@ -28,7 +28,7 @@ Kohana::$config->attach(new Config_File);
 Kohana::modules(array(
 	'auth'       => MODPATH.'auth',       // Basic authentication
 	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
-	'email'      => MODPATH.'email',			 // E-mail
+	'email'      => MODPATH.'email',			// E-mail
 	'database'   => MODPATH.'database',   // Database access
 ));
 
