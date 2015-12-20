@@ -1,8 +1,6 @@
-<?php defined('SYSPATH') OR die('No direct script access.');
-
+<?php
 return array(
 	'trusted_hosts' => array(
 		'localhost', 'chatter.pe.hu', 'chat'
 	),
-
 );

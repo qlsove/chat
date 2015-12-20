@@ -1,7 +1,7 @@
 <?php
 class Site {
 
-  public static function favicon($file, array $attributes = array('rel'=>'icon', 'type'=>'image/x-icon'), $protocol = NULL, $index = FALSE) {
+  public static function favicon($file, array $attributes = array('rel' => 'icon', 'type' => 'image/x-icon'), $protocol = NULL, $index = FALSE) {
     if (strpos($file, '://') === FALSE) {
       $file = URL::base($protocol, $index).$file;
     }

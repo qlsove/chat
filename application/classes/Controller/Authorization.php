@@ -8,7 +8,7 @@ class Controller_Authorization extends Controller_Template {
     if ($this->auto_render) {
       $this->template->title   = 'Auntefication';
       $this->template->styles  = array('assets/css/login/style.css', 'assets/css/login/animate-custom.css');
-      $this->template->scripts = array('assets/js/jquery.js','assets/js/validate.js');
+      $this->template->scripts = array('assets/js/jquery.js', 'assets/js/validate.js');
       $this->template->header  = '';
     }
   }
@@ -89,12 +89,12 @@ class Controller_Authorization extends Controller_Template {
       'token'            => $token,
     );
     
-    $user    = ORM::factory('User')->create_user($data, array('username','email','password','token'));
+    $user    = ORM::factory('User')->create_user($data, array('username', 'email', 'password', 'token'));
     $url     = URL::site(NULL, TRUE).'approved?token='.$token;
     $config  = Kohana::$config->load('email');
+    $from    = $config['email'];
     $to      = $this->request->post('emailsignup');
     $subject = 'Підтвердження реєстрації на сайті';
-    $from    = $config['email'];
     $text    = 'Ви були зареєстровані на нашому сайті. Для підтвердження реєстрації перейдіть по посиланню: '.$url;
     Email::connect($config['main']);
     Email::send($to, $from, $subject, $text, $html = false);

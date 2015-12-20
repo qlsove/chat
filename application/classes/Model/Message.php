@@ -3,14 +3,14 @@ class Model_Message extends ORM {
 
   protected $_table_name = 'messages';
 
-  protected $_belongs_to= array(
-  'sender'  => array(
-    'model'       => 'user',
-    'foreign_key' => 'from',
+  protected $_belongs_to = array(
+    'sender'   => array(
+      'model'       => 'user',
+      'foreign_key' => 'from',
     ),
-  'receiver'  => array(
-    'model'       => 'user',
-    'foreign_key' => 'to',
+    'receiver' => array(
+      'model'       => 'user',
+      'foreign_key' => 'to',
     ),
   );
 

@@ -1,5 +1,4 @@
-<?php defined('SYSPATH') OR die('No direct access allowed.');
-
+<?php
 return array(
   'driver'       => 'ORM',
   'hash_method'  => 'sha256',

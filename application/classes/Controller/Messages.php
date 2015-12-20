@@ -99,7 +99,7 @@ class Controller_Messages extends Controller_Template_Page {
 
 
   public function update($func, $me, $id, $user = 0) {
-    $tempdata = ($func == "updateDialog")  ? ORM::factory('Message')->updateDialog($me, $user, $id) : ORM::factory('Message')->getDialog($me, $id);
+    $tempdata = ($func == "updateDialog") ? ORM::factory('Message')->updateDialog($me, $user, $id) : ORM::factory('Message')->getDialog($me, $id);
     $convert  = array_fill(0, count($tempdata), true);
     $sender   = array_fill(0, count($tempdata), $me);
     $data["count"] = count($tempdata);

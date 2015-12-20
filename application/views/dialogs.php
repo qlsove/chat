@@ -3,7 +3,7 @@
     <tbody>
     <?php 
     if (!empty($users)) :
-      foreach ($users as $user ) :?>
+      foreach ($users as $user) :?>
       <tr class="read">
         <td class="contact"><?=$user->username?></td>
         <td class="subject"><?=$user->email?></td>
