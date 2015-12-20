@@ -22,7 +22,7 @@ class Controller_Authorization extends Controller_Template {
       $login    = $this->request->post('username');
       $password = $this->request->post('password');
       $remember = $this->request->post('loginkeeping') !== null;
-      if(Auth::instance()->login($login, $password, $remember_me)) {
+      if (Auth::instance()->login($login, $password, $remember)) {
         $this->redirect(URL::site(NULL, TRUE).'inbox');
       }
     }
