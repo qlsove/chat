@@ -13,7 +13,7 @@ class Controller_Template_Page extends Controller_Template {
       $this->template->content = '';
     }
     if (!Auth::instance()->logged_in()) {
-      $this->redirect(URL::site(NULL, TRUE).'in');
+      $this->redirect(URL::site(NULL, TRUE));
     }
   }
 
