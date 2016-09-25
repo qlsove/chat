@@ -17,7 +17,7 @@ class Model_Message extends ORM {
   public function getMsg($type, $not_removed, $id) {
     $query = ORM::factory('Message')
       ->where($type, '=', $id)
-      ->and_where($not_removed, '!=',  TRUE)
+      ->and_where($not_removed, '!=', TRUE)
       ->find_all()
       ->as_array();
     return $query;
@@ -30,12 +30,12 @@ class Model_Message extends ORM {
       ->or_where_open()
         ->where('from', '=',  $me)
         ->and_where('to', '=',  $user)
-        ->and_where('removeBySender', '!=',  TRUE)
+        ->and_where('removeBySender', '!=', TRUE)
       ->or_where_close()
       ->or_where_open()
         ->where('to', '=',  $me)
         ->and_where('from', '=',  $user)
-        ->and_where('removeByReceiver', '!=',  TRUE)
+        ->and_where('removeByReceiver', '!=', TRUE)
       ->or_where_close()
       ->order_by('id', 'ASC')
       ->execute()
@@ -58,13 +58,13 @@ class Model_Message extends ORM {
         ->where('from', '=',  $me)
         ->and_where('to', '=',  $user)
         ->and_where('id', '>',  $id)
-        ->and_where('removeBySender', '!=',  TRUE)
+        ->and_where('removeBySender', '!=', TRUE)
       ->or_where_close()
       ->or_where_open()
         ->where('to', '=',  $me)
         ->and_where('from', '=',  $user)
         ->and_where('id', '>',  $id)
-        ->and_where('removeByReceiver', '!=',  TRUE)
+        ->and_where('removeByReceiver', '!=', TRUE)
       ->or_where_close()
       ->order_by('id', 'ASC')
       ->execute()
@@ -77,7 +77,7 @@ class Model_Message extends ORM {
     $query = ORM::factory('Message')
       ->where('to', '=',  $me)
       ->and_where('status', '=',  'unread')
-      ->and_where('removeByReceiver', '!=',  TRUE)
+      ->and_where('removeByReceiver', '!=', TRUE)
       ->find_all();
     return $query;
   }
@@ -87,9 +87,9 @@ class Model_Message extends ORM {
     $query = DB::update($this->_table_name)
       ->set(array('status' => 'read'))
       ->where('to', '=', $me)
-      ->and_where('from', '=',  $user)
-      ->and_where('id', '<=',  $id)
-      ->and_where('status', '=',  'unread')
+      ->and_where('from', '=', $user)
+      ->and_where('id', '<=', $id)
+      ->and_where('status', '=', 'unread')
       ->execute();
   }
 
@@ -97,7 +97,7 @@ class Model_Message extends ORM {
   public function setReadOnce($id) {
     $query = DB::update($this->_table_name)
       ->set(array('status' => 'read'))
-      ->where('id', '=',  $id)
+      ->where('id', '=', $id)
       ->execute();
   }
 
@@ -105,7 +105,7 @@ class Model_Message extends ORM {
   public function setDelOnce($id, $status) {
     $query = DB::update($this->_table_name)
       ->set(array($status => TRUE))
-      ->where('id', '=',  $id)
+      ->where('id', '=', $id)
       ->execute();
   }
 

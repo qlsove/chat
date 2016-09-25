@@ -1,7 +1,7 @@
 <?php
 class Controller_Template_Page extends Controller_Template {
 
-	public $template = 'layouts/default';
+  public $template = 'layouts/default';
 
   public function before() {
     parent::before();

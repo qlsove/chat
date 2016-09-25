@@ -24,7 +24,7 @@ class Controller_Messages extends Controller_Template_Page {
     $me = Auth::instance()->get_user()->id;
     $data["partner"]  = ORM::factory('User', $id)->email;
     $data["messages"] = $this->update("getDialog", $me, $id)["value"];
-    $data["active"]   = 'dialogs';
+    $data["active"]   = "dialogs";
     $data["user"]     = $id;
     $data["error"]    = "The list is empty";
 
@@ -77,7 +77,7 @@ class Controller_Messages extends Controller_Template_Page {
       die(json_encode($data["messages"]));
     }
     else {
-      $data["status"] ="Empty";
+      $data["status"] = "Empty";
       die(json_encode($data));
     }
   }

@@ -26,7 +26,7 @@
 setTimeout(gettNew, 100);
 
 function gettNew(){
-  $.ajax({ 
+  $.ajax({
     url: "/update_inbox",
     method: 'POST',
     data: {},

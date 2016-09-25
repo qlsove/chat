@@ -20,7 +20,7 @@
 <div class="dialog_footer" data-user="<?=$user?>">
   <div class="dialog_inner">
     <textarea  class="dialog_body" autofocus name="text"></textarea>
-      <div class="dialog_user"><?=$partner?></div>
+    <div class="dialog_user"><?=$partner?></div>
     <input class="sendbtn" type="button" name="loginbtn" value="Send" />
   </div>
 </div>

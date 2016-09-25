@@ -12,7 +12,7 @@ class Site {
 
   public static function set_routes($config) {
     $routes = Kohana::$config->load($config);
-    $data = explode('.', $config);
+    $data   = explode('.', $config);
     if (count($data) == 1) {
       foreach ($routes as $name => $rout) {
         if (isset($rout["regexp"])) {

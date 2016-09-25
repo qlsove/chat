@@ -36,7 +36,7 @@ class Controller_Authorization extends Controller_Template {
     $password = $this->request->post('password');
     $remember = $this->request->post('remember') == 'true';
     if (Auth::instance()->login($login, $password, $remember)) {
-      $message['status'] = 'ok';
+      $message['status'] = "ok";
       $message['url']    = URL::site(NULL, TRUE); 
       die(json_encode($message));
     }
@@ -50,7 +50,7 @@ class Controller_Authorization extends Controller_Template {
         $message['text']   = "User not exist";
         $message['item']   = "username"; 
       }
-      $message['status'] = 'error';
+      $message['status'] = "error";
       die(json_encode($message));
     }
   }
@@ -62,7 +62,7 @@ class Controller_Authorization extends Controller_Template {
   }
 
 
-  public function action_registration(){
+  public function action_registration() {
     Request::initial()->is_ajax() || die;
     $emailsignup    = ORM::factory('User')->checkUser('email', $this->request->post('emailsignup'));
     $usernamesignup = ORM::factory('User')->checkUser('username', $this->request->post('usernamesignup'));
@@ -70,12 +70,12 @@ class Controller_Authorization extends Controller_Template {
       if ($emailsignup->loaded()) {
         $message[0]['text']   = "User with this email is already exist!";
         $message[0]['item']   = "emailsignup"; 
-        $message[0]['status'] = 'error';
+        $message[0]['status'] = "error";
       }
       if ($usernamesignup->loaded()) {
         $message[1]['text']   = "User with username email is already exist!"; 
         $message[1]['item']   = "usernamesignup"; 
-        $message[1]['status'] = 'error';
+        $message[1]['status'] = "error";
       }
       die(json_encode($message));
     }
@@ -94,14 +94,14 @@ class Controller_Authorization extends Controller_Template {
     $config  = Kohana::$config->load('email');
     $from    = $config['email'];
     $to      = $this->request->post('emailsignup');
-    $subject = 'Підтвердження реєстрації на сайті';
-    $text    = 'Ви були зареєстровані на нашому сайті. Для підтвердження реєстрації перейдіть по посиланню: '.$url;
+    $subject = "Підтвердження реєстрації на сайті";
+    $text    = "Ви були зареєстровані на нашому сайті. Для підтвердження реєстрації перейдіть по посиланню: ".$url;
     Email::connect($config['main']);
     Email::send($to, $from, $subject, $text, $html = false);
 
     $message[0]['text']   = "Link to activate your account sent for your email";
     $message[0]['item']   = "emailsignup"; 
-    $message[0]['status'] = 'ok';
+    $message[0]['status'] = "ok";
     die(json_encode($message));
   }
 
