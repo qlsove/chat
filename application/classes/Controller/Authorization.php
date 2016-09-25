@@ -94,8 +94,8 @@ class Controller_Authorization extends Controller_Template {
     $config  = Kohana::$config->load('email');
     $from    = $config['email'];
     $to      = $this->request->post('emailsignup');
-    $subject = "Підтвердження реєстрації на сайті";
-    $text    = "Ви були зареєстровані на нашому сайті. Для підтвердження реєстрації перейдіть по посиланню: ".$url;
+    $subject = "Registration approval";
+    $text    = "Thank you for registration on our site! You must follow this link to activate your account: ".$url;
     Email::connect($config['main']);
     Email::send($to, $from, $subject, $text, $html = false);
 
