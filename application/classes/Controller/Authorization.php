@@ -88,7 +88,7 @@ class Controller_Authorization extends Controller_Template {
       'password_confirm' => $this->request->post('passwordsignup_confirm'),
       'token'            => $token,
     );
-    
+
     $user    = ORM::factory('User')->create_user($data, array('username', 'email', 'password', 'token'));
     $url     = URL::site(NULL, TRUE).'approved?token='.$token;
     $config  = Kohana::$config->load('email');
